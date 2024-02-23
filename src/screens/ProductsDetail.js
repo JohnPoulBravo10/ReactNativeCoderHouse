@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react'
 import colors from '../utils/globals/colors'
 import Header from '../components/Header'
 
-const ProductDetail = ({productId,portrait}) => {
-
+const ProductDetail = ({route,portrait}) => {
+  const {productId} = route.params
   const [product,setProduct] = useState({})
 
   useEffect(()=>{

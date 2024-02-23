@@ -2,9 +2,9 @@ import { Pressable, StyleSheet, Text, View } from 'react-native'
 import colors from '../utils/globals/colors'
 import fonts from '../utils/globals/fonts'
 
-const CardCategory = ({item,selectedCategoryState}) => {
+const CardCategory = ({item,navigation}) => {
   return (
-    <Pressable  style={styles.container} onPress={()=>selectedCategoryState(item)}>
+    <Pressable  style={styles.container} onPress={()=>navigation.navigate("ProductsByCategory",{categorySelected:item})}>
           <Text style={styles.text}>{item}</Text>
     </Pressable>
   )

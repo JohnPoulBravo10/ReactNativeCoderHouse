@@ -4,11 +4,11 @@ import colors from '../utils/globals/colors'
 import Categories from '../components/Categories'
 import Header from '../components/Header'
 
-const Home = ({selectedCategoryState}) => {
+const Home = ({navigation}) => {
   return (
     <>
     <Header title="Ecommerce"/>
-    <Categories selectedCategoryState={selectedCategoryState}/>
+    <Categories navigation={navigation}/>
 </>
   )
 }
