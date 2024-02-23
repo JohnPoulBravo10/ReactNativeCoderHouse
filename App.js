@@ -32,10 +32,10 @@ const App = () => {
       <Stack.Navigator
       initialRouteName='Home'
       screenOptions={
-        ({route})=>{
+        ({route,navigation})=>{
           return{
             header: () => {
-              return <Header />
+              return <Header navigation={navigation}/>
             }
           }
         }
