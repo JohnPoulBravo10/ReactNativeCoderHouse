@@ -9,6 +9,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductsByCategory from './src/screens/ProductsByCategory'
 import ProductsDetail from "./src/screens/ProductsDetail"
+import Header from './src/components/Header'
 
 
 const Stack = createNativeStackNavigator();
@@ -16,15 +17,9 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [fontsLoaded] = useFonts(fontCollection)
-  const [portrait,setPortrait] = useState(true)
-  const {width,height} = useWindowDimensions()
+  
   
  
-
-  useEffect(()=>{
-    if(width > height) setPortrait(false) 
-    else setPortrait(true)
-  },[width,height])
 
   if(!fontsLoaded) return null
 
@@ -34,7 +29,18 @@ const App = () => {
     <>
     <StatusBar backgroundColor={colors.black} />
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+      initialRouteName='Home'
+      screenOptions={
+        ({route})=>{
+          return{
+            header: () => {
+              return <Header />
+            }
+          }
+        }
+      }
+      >
         <Stack.Screen name='Home' component={Home}/>
         <Stack.Screen name='ProductsByCategory' component={ProductsByCategory}/>
         <Stack.Screen name='ProductsDetail' component={ProductsDetail}/>

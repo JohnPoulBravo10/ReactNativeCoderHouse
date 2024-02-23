@@ -4,6 +4,7 @@ import Header from '../components/Header'
 import { useEffect, useState } from 'react'
 import ProductByCategory from '../components/ProductByCategory'
 import Search from '../components/Search'
+import colors from '../utils/globals/colors'
 
 const ProductsByCategory = ({route,navigation}) => {
   const {categorySelected} = route.params
@@ -24,18 +25,22 @@ const ProductsByCategory = ({route,navigation}) => {
 
 
   return (
-    <>
-        <Header title={categorySelected}/>
+    <View style={styles.container}>
         <Search handlerKeyword={handlerKeyword}/>
         <FlatList
           data={productsFiltered}
           keyExtractor={item => item.id}
           renderItem={({item})=> <ProductByCategory item={item} navigation={navigation}/>}
         />
-    </>
+    </View>
   )
 }
 
 export default ProductsByCategory
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    backgroundColor:colors.black,
+    flex: 1
+  }
+})

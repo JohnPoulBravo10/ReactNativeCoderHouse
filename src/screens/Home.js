@@ -7,7 +7,6 @@ import Header from '../components/Header'
 const Home = ({navigation}) => {
   return (
     <>
-    <Header title="Ecommerce"/>
     <Categories navigation={navigation}/>
 </>
   )
