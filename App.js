@@ -1,59 +1,26 @@
-import { SafeAreaView, StyleSheet, useWindowDimensions } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import Home from './src/screens/Home'
+import { StatusBar } from 'expo-status-bar'
 import {useFonts} from "expo-font"
 import { fontCollection } from './src/utils/globals/fonts'
-import { StatusBar } from 'expo-status-bar'
+import MainNavigator from './src/navigation/MainNavigator'
 import colors from './src/utils/globals/colors'
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import ProductsByCategory from './src/screens/ProductsByCategory'
-import ProductsDetail from "./src/screens/ProductsDetail"
-import Header from './src/components/Header'
-
-
-const Stack = createNativeStackNavigator();
-
+import { store } from './src/app/store'
+import { Provider } from 'react-redux'
 
 const App = () => {
+
   const [fontsLoaded] = useFonts(fontCollection)
-  
-  
- 
 
   if(!fontsLoaded) return null
 
-  
-
   return (
     <>
-    <StatusBar backgroundColor={colors.black} />
-    <NavigationContainer>
-      <Stack.Navigator
-      initialRouteName='Home'
-      screenOptions={
-        ({route,navigation})=>{
-          return{
-            header: () => {
-              return <Header navigation={navigation}/>
-            }
-          }
-        }
-      }
-      >
-        <Stack.Screen name='Home' component={Home}/>
-        <Stack.Screen name='ProductsByCategory' component={ProductsByCategory}/>
-        <Stack.Screen name='ProductsDetail' component={ProductsDetail}/>
-      </Stack.Navigator>
-    </NavigationContainer>
-  </>
+      <StatusBar backgroundColor={colors.black} />
+      <Provider store={store}>
+        <MainNavigator/>
+      </Provider>
+    </>
+    
   )
 }
 
 export default App
-
-const styles = StyleSheet.create({
-  container:{
-    flex:1
-  }
-})

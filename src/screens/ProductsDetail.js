@@ -2,9 +2,9 @@ import { StyleSheet, Text, View,Image,Pressable } from 'react-native'
 import productos from '../utils/data/productos.json'
 import { useEffect, useState } from 'react'
 import colors from '../utils/globals/colors'
-import Header from '../components/Header'
+import Counter from '../components/Counter'
 
-const ProductDetail = ({route}) => {
+const ProductsDetail = ({route}) => {
   const {productId} = route.params
   const [product,setProduct] = useState({})
 
@@ -27,16 +27,17 @@ const ProductDetail = ({route}) => {
         </View>
         <View style={styles.containerPrice }>
           <Text style={styles.price}>$ {product.price}</Text>
-          <Pressable style={styles.buyNow}>
-            <Text style={styles.buyNowText}>Buy Now</Text>
-          </Pressable>
+          <Counter
+            initialValue={1}
+            product={product} 
+            textButton="Carrito" />
         </View>
       </View>
     </View>
   )
 }
 
-export default ProductDetail
+export default ProductsDetail
 
 const styles = StyleSheet.create({
   container:{
@@ -81,13 +82,4 @@ const styles = StyleSheet.create({
   price:{
     fontSize:30
   },
-  buyNow:{
-    backgroundColor:colors.black,
-    paddingVertical:5,
-    paddingHorizontal:10,
-    borderRadius:5
-  },
-  buyNowText:{
-    color:"white"
-  }
 })
